@@ -1,0 +1,27 @@
+# Ignore virtual environment
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+# Ignore output folders and temp data
+output_videos/
+data/
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# TensorFlow and ML model checkpoints
+*.ckpt
+*.meta
+*.index
+*.data-*
+models/__MACOSX/
+
+# VSCode settings
+.vscode/
+
+# Streamlit config or logs (optional)
+.streamlit/
