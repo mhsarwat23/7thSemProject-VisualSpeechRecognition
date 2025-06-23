@@ -12,8 +12,8 @@ st.set_page_config(layout='wide')
 
 # Setup the sidebar
 with st.sidebar: 
-    st.image(r'C:\Users\patel\Documents\SpeakVision\Screenshot (199).png')
-    st.title('SpeakVision')
+    st.image(r"..\logo.jpeg")
+    st.title('Visual Speech Recognition')
     st.info('End-to-End Sentence Level LipReading.')
 
 st.title('LipNet App') 
@@ -29,13 +29,25 @@ if options:
     # Rendering the video 
     with col1: 
         st.info('The video below displays the converted video in mp4 format')
-        file_path = os.path.join('..','data','s1', selected_video)
-        os.system(f'ffmpeg -i {file_path} -vcodec libx264 test_video.mp4 -y')
+        
+        # Get the absolute path of the selected video
+        file_path = os.path.join('..', 'data', 's1', selected_video)
+        
+        # Dynamically generate the output file name based on the selected video
+        output_file = os.path.join('output_videos', f"{os.path.splitext(selected_video)[0]}_converted.mp4")
+        
+        # Ensure the output directory exists
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        
+        # Using FFmpeg to convert the selected video to mp4 format
+        os.system(f'ffmpeg -i "{file_path}" -vcodec libx264 "{output_file}" -y')
 
-        # Rendering inside of the app
-        video = open('test_video.mp4', 'rb') 
-        video_bytes = video.read() 
-        st.video(video_bytes)
+        # Rendering the converted video inside of the app
+        with open(output_file, 'rb') as video:
+            video_bytes = video.read() 
+            st.video(video_bytes)
+
+
 
 
     with col2: 
