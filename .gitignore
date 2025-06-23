@@ -25,3 +25,4 @@ models/__MACOSX/
 
 # Streamlit config or logs (optional)
 .streamlit/
+app/Untitled-1.py
